@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "YeniBasvuru";
+    Layout = "~/Views/Shared/Layout_Views/Admin_Layout.cshtml";
+}
+
+    <div class="card">
+        <div class="card-header p-2">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link active" href="#OnYaziHobi" data-toggle="tab"><b>Ön Yazı Ve Hobi</b></a></li>
+                <li class="nav-item"><a class="nav-link" id="basvuruVeri" href="#BasvuruVeri" data-toggle="tab">Başvuru Ön Bilgileri</a></li>
+                <li class="nav-item"><a class="nav-link" id="sertifikalar" href="#Sertifika" data-toggle="tab">Sertifikalar</a></li>
+                <li class="nav-item"><a class="nav-link" id="seminer" href="#Seminer" data-toggle="tab">Seminer</a></li>
+                <li class="nav-item"><a class="nav-link" id="deneyimler" href="#Deneyim" data-toggle="tab">Deneyim</a></li>
+                <li class="nav-item"><a class="nav-link" id="proje" href="#Proje" data-toggle="tab">Proje</a></li>
+                <li class="nav-item"><a class="nav-link" id="yabanciDil" href="#YabanciDil" data-toggle="tab">Dil</a></li>
+                <li class="nav-item"><a class="nav-link" id="referans" href="#Referans" data-toggle="tab">Referans</a></li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="active tab-pane" id="OnYaziHobi">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h6>Ön Yazi</h6>
+                        </div>
+                        <textarea id="onYazi" type="text" class="form-control" rows="6"></textarea>
+                    </div>
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h6>Hobiler</h6>
+                        </div>
+                        <textarea id="hobiler" type="text" class="form-control" rows="6"></textarea>
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="BasvuruVeri" data-url='@Url.Action("BasvuruVeriPartial","Partial")'></div>
+
+                <div class="tab-pane" id="Sertifika" data-url='@Url.Action("SertifikaPartial","Partial")'></div>
+
+                <div class="tab-pane" id="Seminer" data-url='@Url.Action("SeminerPartial","Partial")'></div>
+
+                <div class="tab-pane" id="Deneyim" data-url='@Url.Action("DeneyimPartial","Partial")'></div>
+
+                <div class="tab-pane" id="Proje" data-url='@Url.Action("ProjePartial","Partial")'></div>
+
+                <div class="tab-pane" id="YabanciDil" data-url='@Url.Action("YabanciDilPartial","Partial")'></div>
+
+                <div class="tab-pane" id="Referans" data-url='@Url.Action("ReferansPartial","Partial")'></div>
+
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-warning" style="float:right" id="Post">Basvuruyu Ekle</button>
+        </div>
+    </div>
+
+@section BasvuruSection{
+    <script src="~/Scripts/YeniBasvuru/yeniBasvuruClick.js"></script>
+    <script src="~/Scripts/YeniBasvuru/yeniBasvuruPost.js"></script>
+}

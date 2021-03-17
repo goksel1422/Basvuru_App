@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Deneyimler</h3>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Firma Adı</th>
+                    <th>Deneyim Türü</th>
+                    <th>Deneyim Yeri</th>
+                    <th>Başlama Tarihi</th>
+                    <th>Bitiş Tarihi</th>
+                    <th>İş Tanımı</th>
+                </tr>
+            </thead>
+            <tbody id="deneyimTablo">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="deneyimModal" style="display: none;" aria-hidden="true" data-url='@Url.Action("deneyimModal","Modal")'>
+</div>
+<button type="button" class="btn btn-success" id="deneyModal-lg">Deneyim Ekle</button>
+<script>
+    $("#deneyModal-lg").on("click", function () {
+        var url = $("#deneyimModal").data("url");
+        $.get(url, function (data) {
+
+            $("#deneyimModal").html(data).modal("show");
+        });
+
+    });
+</script>

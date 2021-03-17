@@ -1,0 +1,49 @@
+﻿@model Basvuru_App.Models.basvurular
+@{
+    Layout = null;
+}
+
+<div class="timeline timeline-inverse">
+    <!-- timeline time label -->
+    <div class="card card-solid card-secondary">
+        <div class="card-header">
+            <h6>Sertifikalar</h6>
+        </div>
+        <div class="card-body pb-0">
+            <div class="row d-flex align-items-stretch">
+
+                @foreach (var Ser in Model.sertifikalar)
+                {
+                    <div class="col-12 col-sm-6 align-items-stretch">
+                        <div class="card bg-light">
+                            <div class="card-header text-muted border-bottom-0">
+                                <h3>@Ser.SertifikaAdi</h3>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2 class="lead"><b></b></h2>
+                                        <p class="text-muted text-sm"><b class="fa fa-envelope"> Sertifika Alindiği Kurum: </b>@Ser.Alindigi_Kurum </p>
+                                        <p class="text-muted text-sm"><b class="fa fa-unlock"> Sertifika Trihi: </b> @Ser.AlimTar </p>
+                                    </div>
+                                    <div class="col-6 text-center">
+
+                                        <img src="" alt="" class=" img-fluid img-circle elevation-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="text-right">
+
+                                    <input type="hidden" id="hidDocumentID" name="DocumentID" value="@Ser.SertifikaID" />
+                                    <a href="#" id="btnOpenDocument" onclick="return false">Dökümanı Aç</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!-- / -->
+            </div>
+        </div>
+    </div>
+</div>

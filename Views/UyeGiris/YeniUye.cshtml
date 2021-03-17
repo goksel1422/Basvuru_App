@@ -1,0 +1,113 @@
+﻿@model Basvuru_App.Models.kullanicilar
+@{
+    ViewBag.Title = "YeniUye";
+    Layout = "~/Views/Shared/Layout_Views/UyeGiris_Layout.cshtml";
+}
+
+@using (Html.BeginForm("YeniUye", "UyeGiris", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="card">
+        <div class="card-body register-card-body">
+            <p class="login-box-msg">Yeni bir Üyelik Al</p>
+
+
+            <div class="input-group mb-3">
+
+                @Html.TextBoxFor(m => m.KAdi, new { @class = "form-control", Type = "text", placeholder = "İsminiz..." })
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+
+                @Html.TextBoxFor(m => m.KSoyad, new { @class = "form-control", Type = "text", placeholder = "Soyisminiz..." })
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                @Html.TextBoxFor(m => m.KEposta, new { @class = "form-control", Type = "email", placeholder = "Email..." })
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+
+                @Html.TextBoxFor(m => m.KSifre, new { @class = "form-control", Type = "Password", placeholder = "Prola..." })
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+
+                @Html.TextBoxFor(m => m.KDogTar, new { @class = "form-control", Type = "date", placeholder = "Doğum Tarihi..." })
+
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+
+                @Html.TextBoxFor(m => m.KTelNo, new { @class = "form-control", Type = "text", placeholder = "Tel No..." })
+
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+
+                @Html.TextBoxFor(m => m.KIban, new { @class = "form-control", Type = "text", placeholder = "Banka Iban..." })
+
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+
+                @Html.Label("Profil Resmi")
+                <div class="input-group mb-3">
+                    <input type="file" name="yuklenecekDosya" />
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+
+                <div class="col-lg-3">
+                    @Html.Label("Erkek")
+                    @Html.RadioButtonFor(m => m.KCinsiyet, true)
+                </div>
+                <div class="col-lg-3">
+                    @Html.Label("Kadin")
+                    @Html.RadioButtonFor(m => m.KCinsiyet, false)
+
+
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Kayit Ol</button>
+                </div>
+
+            </div>
+
+            <a href="~/UyeGiris/UyeGiris" class="text-center">Zaten bir üyeliğe sahibim.</a>
+        </div>
+    </div>
+}
+

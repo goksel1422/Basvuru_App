@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="659f68003f8f45c8a9e08c40fd998f39" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="basvuruModel.basari_seviyeleri" Width="1.5" PointX="9.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="basvuruModel.basvuru_durumu" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="basvuruModel.bolumler" Width="1.5" PointX="7.125" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="basvuruModel.fakulteler" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="basvuruModel.ilceler" Width="1.5" PointX="3.125" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="basvuruModel.iller" Width="1.5" PointX="3.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="basvuruModel.projeler" Width="1.5" PointX="12" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="basvuruModel.sem_kurs" Width="1.5" PointX="12" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="basvuruModel.universiteler" Width="1.5" PointX="2.875" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="basvuruModel.yetkiler" Width="1.5" PointX="3.125" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="basvuruModel.bolumler_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="basvuruModel.fakulteler_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="basvuruModel.ilceler_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="basvuruModel.universiteler_ibfk_1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="basvuruModel.referanslar" Width="1.5" PointX="5.125" PointY="10.875" />
+        <EntityTypeShape EntityType="basvuruModel.askerlik" Width="1.5" PointX="7.25" PointY="10.875" />
+        <EntityTypeShape EntityType="basvuruModel.diller" Width="1.5" PointX="15.125" PointY="4.125" />
+        <EntityTypeShape EntityType="basvuruModel.byabancidil" Width="1.5" PointX="12.75" PointY="3.25" />
+        <AssociationConnector Association="basvuruModel.byabancidil_ibfk_4" />
+        <AssociationConnector Association="basvuruModel.byabancidil_ibfk_1" />
+        <EntityTypeShape EntityType="basvuruModel.deneyim" Width="1.5" PointX="14.5" PointY="6.5" />
+        <EntityTypeShape EntityType="basvuruModel.meslekler" Width="1.5" PointX="7.125" PointY="3.375" />
+        <AssociationConnector Association="basvuruModel.deneyim_ibfk_1" />
+        <AssociationConnector Association="basvuruModel.deneyim_ibfk_4" />
+        <EntityTypeShape EntityType="basvuruModel.kullanicilar" Width="1.5" PointX="5.25" PointY="3.375" />
+        <AssociationConnector Association="basvuruModel.kullanicilar_ibfk_2" />
+        <AssociationConnector Association="basvuruModel.kullanicilar_ibfk_1" />
+        <EntityTypeShape EntityType="basvuruModel.basvurular" Width="1.5" PointX="9.625" PointY="5.75" />
+        <AssociationConnector Association="basvuruModel.basvurular_ibfk_7" />
+        <AssociationConnector Association="basvuruModel.basvurular_ibfk_4" />
+        <AssociationConnector Association="basvuruModel.basvurular_ibfk_3" />
+        <AssociationConnector Association="basvuruModel.basvurular_ibfk_8" />
+        <AssociationConnector Association="basvuruModel.basvurular_ibfk_9" />
+        <AssociationConnector Association="basvuruModel.byabancidil_ibfk_3" />
+        <AssociationConnector Association="basvuruModel.deneyim_ibfk_3" />
+        <AssociationConnector Association="basvuruModel.projeler_ibfk_1" />
+        <AssociationConnector Association="basvuruModel.referanslar_ibfk_1" />
+        <AssociationConnector Association="basvuruModel.sem_kurs_ibfk_1" />
+        <EntityTypeShape EntityType="basvuruModel.sertifikalar" Width="1.5" PointX="10.125" PointY="11.25" />
+        <AssociationConnector Association="basvuruModel.sertifikalar_ibfk_1" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

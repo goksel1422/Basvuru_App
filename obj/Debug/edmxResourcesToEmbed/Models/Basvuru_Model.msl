@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="basvuruModelStoreContainer" CdmEntityContainer="basvuruEntities">
+    <EntitySetMapping Name="basari_seviyeleri">
+      <EntityTypeMapping TypeName="basvuruModel.basari_seviyeleri">
+        <MappingFragment StoreEntitySet="basari_seviyeleri">
+          <ScalarProperty Name="BasSeviyeID" ColumnName="BasSeviyeID" />
+          <ScalarProperty Name="BasSeviyesi" ColumnName="BasSeviyesi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="basvuru_durumu">
+      <EntityTypeMapping TypeName="basvuruModel.basvuru_durumu">
+        <MappingFragment StoreEntitySet="basvuru_durumu">
+          <ScalarProperty Name="BDurumID" ColumnName="BDurumID" />
+          <ScalarProperty Name="BDurum" ColumnName="BDurum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bolumler">
+      <EntityTypeMapping TypeName="basvuruModel.bolumler">
+        <MappingFragment StoreEntitySet="bolumler">
+          <ScalarProperty Name="bolum_id" ColumnName="bolum_id" />
+          <ScalarProperty Name="bolum_ad" ColumnName="bolum_ad" />
+          <ScalarProperty Name="fakulte_id" ColumnName="fakulte_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fakulteler">
+      <EntityTypeMapping TypeName="basvuruModel.fakulteler">
+        <MappingFragment StoreEntitySet="fakulteler">
+          <ScalarProperty Name="fakulte_id" ColumnName="fakulte_id" />
+          <ScalarProperty Name="fakulte_ad" ColumnName="fakulte_ad" />
+          <ScalarProperty Name="uni_id" ColumnName="uni_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ilceler">
+      <EntityTypeMapping TypeName="basvuruModel.ilceler">
+        <MappingFragment StoreEntitySet="ilceler">
+          <ScalarProperty Name="IlceID" ColumnName="IlceID" />
+          <ScalarProperty Name="Ilce" ColumnName="Ilce" />
+          <ScalarProperty Name="IlID" ColumnName="IlID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="iller">
+      <EntityTypeMapping TypeName="basvuruModel.iller">
+        <MappingFragment StoreEntitySet="iller">
+          <ScalarProperty Name="IlID" ColumnName="IlID" />
+          <ScalarProperty Name="Il" ColumnName="Il" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projeler">
+      <EntityTypeMapping TypeName="basvuruModel.projeler">
+        <MappingFragment StoreEntitySet="projeler">
+          <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+          <ScalarProperty Name="ProjeAdi" ColumnName="ProjeAdi" />
+          <ScalarProperty Name="Proje_Aciklama" ColumnName="Proje_Aciklama" />
+          <ScalarProperty Name="BID" ColumnName="BID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sem_kurs">
+      <EntityTypeMapping TypeName="basvuruModel.sem_kurs">
+        <MappingFragment StoreEntitySet="sem_kurs">
+          <ScalarProperty Name="SKID" ColumnName="SKID" />
+          <ScalarProperty Name="EgitimAdi" ColumnName="EgitimAdi" />
+          <ScalarProperty Name="Egitim_Kurumu" ColumnName="Egitim_Kurumu" />
+          <ScalarProperty Name="Egitmen_Adi" ColumnName="Egitmen_Adi" />
+          <ScalarProperty Name="Egitmen_Soyadi" ColumnName="Egitmen_Soyadi" />
+          <ScalarProperty Name="Bas_Tar" ColumnName="Bas_Tar" />
+          <ScalarProperty Name="Bitis_Tar" ColumnName="Bitis_Tar" />
+          <ScalarProperty Name="BID" ColumnName="BID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="universiteler">
+      <EntityTypeMapping TypeName="basvuruModel.universiteler">
+        <MappingFragment StoreEntitySet="universiteler">
+          <ScalarProperty Name="uni_id" ColumnName="uni_id" />
+          <ScalarProperty Name="uni_name" ColumnName="uni_name" />
+          <ScalarProperty Name="IlID" ColumnName="IlID" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yetkiler">
+      <EntityTypeMapping TypeName="basvuruModel.yetkiler">
+        <MappingFragment StoreEntitySet="yetkiler">
+          <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
+          <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="referanslar">
+      <EntityTypeMapping TypeName="basvuruModel.referanslar">
+        <MappingFragment StoreEntitySet="referanslar">
+          <ScalarProperty Name="BID" ColumnName="BID" />
+          <ScalarProperty Name="RefTel" ColumnName="RefTel" />
+          <ScalarProperty Name="RefMail" ColumnName="RefMail" />
+          <ScalarProperty Name="RefSoyad" ColumnName="RefSoyad" />
+          <ScalarProperty Name="RefAdi" ColumnName="RefAdi" />
+          <ScalarProperty Name="RefID" ColumnName="RefID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="askerlik">
+      <EntityTypeMapping TypeName="basvuruModel.askerlik">
+        <MappingFragment StoreEntitySet="askerlik">
+          <ScalarProperty Name="AskerlikDurum" ColumnName="AskerlikDurum" />
+          <ScalarProperty Name="AskerliID" ColumnName="AskerliID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="diller">
+      <EntityTypeMapping TypeName="basvuruModel.diller">
+        <MappingFragment StoreEntitySet="diller">
+          <ScalarProperty Name="DilAdi" ColumnName="DilAdi" />
+          <ScalarProperty Name="DilID" ColumnName="DilID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="byabancidil">
+      <EntityTypeMapping TypeName="basvuruModel.byabancidil">
+        <MappingFragment StoreEntitySet="byabancidil">
+          <ScalarProperty Name="BasSeviyeID" ColumnName="BasSeviyeID" />
+          <ScalarProperty Name="BID" ColumnName="BID" />
+          <ScalarProperty Name="DilID" ColumnName="DilID" />
+          <ScalarProperty Name="BYDilID" ColumnName="BYDilID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="deneyim">
+      <EntityTypeMapping TypeName="basvuruModel.deneyim">
+        <MappingFragment StoreEntitySet="deneyim">
+          <ScalarProperty Name="MeslekID" ColumnName="MeslekID" />
+          <ScalarProperty Name="BID" ColumnName="BID" />
+          <ScalarProperty Name="IsTanimi" ColumnName="IsTanimi" />
+          <ScalarProperty Name="IlID" ColumnName="IlID" />
+          <ScalarProperty Name="FirmaAdi" ColumnName="FirmaAdi" />
+          <ScalarProperty Name="BitisTar" ColumnName="BitisTar" />
+          <ScalarProperty Name="BaslamaTar" ColumnName="BaslamaTar" />
+          <ScalarProperty Name="DeneyimID" ColumnName="DeneyimID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="meslekler">
+      <EntityTypeMapping TypeName="basvuruModel.meslekler">
+        <MappingFragment StoreEntitySet="meslekler">
+          <ScalarProperty Name="isim" ColumnName="isim" />
+          <ScalarProperty Name="kod" ColumnName="kod" />
+          <ScalarProperty Name="MeslekID" ColumnName="MeslekID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kullanicilar">
+      <EntityTypeMapping TypeName="basvuruModel.kullanicilar">
+        <MappingFragment StoreEntitySet="kullanicilar">
+          <ScalarProperty Name="IlceID" ColumnName="IlceID" />
+          <ScalarProperty Name="KResim" ColumnName="KResim" />
+          <ScalarProperty Name="KCinsiyet" ColumnName="KCinsiyet" />
+          <ScalarProperty Name="KIban" ColumnName="KIban" />
+          <ScalarProperty Name="KTelNo" ColumnName="KTelNo" />
+          <ScalarProperty Name="KDogTar" ColumnName="KDogTar" />
+          <ScalarProperty Name="KSifre" ColumnName="KSifre" />
+          <ScalarProperty Name="KEposta" ColumnName="KEposta" />
+          <ScalarProperty Name="KSoyad" ColumnName="KSoyad" />
+          <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
+          <ScalarProperty Name="KAdi" ColumnName="KAdi" />
+          <ScalarProperty Name="KID" ColumnName="KID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="basvurular">
+      <EntityTypeMapping TypeName="basvuruModel.basvurular">
+        <MappingFragment StoreEntitySet="basvurular">
+          <ScalarProperty Name="MeslekID" ColumnName="MeslekID" />
+          <ScalarProperty Name="AskerliID" ColumnName="AskerliID" />
+          <ScalarProperty Name="BOnYazi" ColumnName="BOnYazi" />
+          <ScalarProperty Name="Hobiler" ColumnName="Hobiler" />
+          <ScalarProperty Name="BDurumID" ColumnName="BDurumID" />
+          <ScalarProperty Name="bolum_id" ColumnName="bolum_id" />
+          <ScalarProperty Name="TCalSure" ColumnName="TCalSure" />
+          <ScalarProperty Name="Ucret_Beklenti" ColumnName="Ucret_Beklenti" />
+          <ScalarProperty Name="KID" ColumnName="KID" />
+          <ScalarProperty Name="BID" ColumnName="BID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sertifikalar">
+      <EntityTypeMapping TypeName="basvuruModel.sertifikalar">
+        <MappingFragment StoreEntitySet="sertifikalar">
+          <ScalarProperty Name="SertifikaPDF" ColumnName="SertifikaPDF" />
+          <ScalarProperty Name="AlimTar" ColumnName="AlimTar" />
+          <ScalarProperty Name="BID" ColumnName="BID" />
+          <ScalarProperty Name="Alindigi_Kurum" ColumnName="Alindigi_Kurum" />
+          <ScalarProperty Name="SertifikaAdi" ColumnName="SertifikaAdi" />
+          <ScalarProperty Name="SertifikaID" ColumnName="SertifikaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

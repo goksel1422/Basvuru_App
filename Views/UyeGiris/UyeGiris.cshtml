@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "UyeGiris";
+    Layout = "~/Views/Shared/Layout_Views/UyeGiris_Layout.cshtml";
+}
+
+<div style="opacity:0.9" class="card">
+    <div class="card-body login-card-body">
+
+
+        <form method="post">
+            <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Email" name="KulEposta">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Password" name="KulPass">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <button type="submit" class="btn btn-info btn btn-primary btn-block btn-flat">Giriş Yap</button>
+                </div>
+            </div>
+        </form>
+        <br />
+        <br />
+        <p class="mb-0">
+            <a href="~/UyeGiris/YeniUye" class="text-center">Üyelik Almak İstiyorum.</a>
+        </p>
+    </div>
+</div>
+
+

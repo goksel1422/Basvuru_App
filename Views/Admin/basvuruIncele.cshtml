@@ -1,0 +1,254 @@
+﻿@model Basvuru_App.Models.basvurular
+@{
+    ViewBag.Title = "basvuruIncele";
+    Layout = "~/Views/Shared/Layout_Views/Admin_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="~/KlcDosyalar/@Model.kullanicilar.KResim"
+                                 alt="User profile picture">
+                        </div>
+
+                        <h3 class="profile-username text-center">@Model.kullanicilar.KAdi @Model.kullanicilar.KSoyad</h3>
+
+                        <p class="text-muted text-center">@Model.meslekler.isim</p>
+
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Telefon: </b> <a>@Model.kullanicilar.KTelNo</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Cinsiyet</b> @if (Model.kullanicilar.KCinsiyet == true)
+                                {<a class="float-right"><b class="fas  fa-male"></b>Erkek</a>}
+                                else
+                                {<a class="float-right"><b class="fas  fa-female"></b>Kadın</a>}
+                            </li>
+                            <li class="list-group-item">
+                                <b>Referanslar</b> <a class="float-right">@TempData["RefSay"]</a>
+                            </li>
+                        </ul>
+                        @if (Model.BDurumID == 3)
+                        {<button value="@Model.BID" id="BOnay" type="button" class="btn btn-info btn-block BOnay disabled"><b>Onayla</b></button>}
+
+                        else
+                        {
+                            if (TempData["onayUyari"] == null)
+                            {
+                                <button value="@Model.BID" id="BOnay" type="button" class="btn btn-info btn-block BOnay"><b>Onayla</b></button>
+                            }
+                            else
+                            {
+                                <button  type="button" class="btn btn-info btn-block toastsDefaultDanger"><b>Onayla</b></button>
+                            }
+
+                        }
+                        @if (Model.BDurumID == 4)
+                        {<button  value="@Model.BID" id="BRed" type="button" class="btn btn-danger btn-block BRed disabled"><b>Reddet</b></button>}
+                        else
+                        {<button value="@Model.BID" id="BRed" type="button" class="btn btn-danger btn-block BRed"><b>Reddet</b></button>}
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- About Me Box -->
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Hakkında</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <strong><i class="fas fa-book mr-1"></i> Üniversite</strong>
+
+                        <p class="text-muted">
+                            <ul>
+                                <li>@Model.bolumler.fakulteler.universiteler.uni_name</li>
+                                <li>@Model.bolumler.fakulteler.fakulte_ad</li>
+                                <li>@Model.bolumler.bolum_ad</li>
+                            </ul>
+                        </p>
+
+                        <hr>
+
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Doğum Yeri</strong>
+
+                        <p class="text-muted">@Model.kullanicilar.ilceler.Ilce, @Model.kullanicilar.ilceler.iller.Il</p>
+
+                        <hr>
+
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> Beceriler</strong>
+
+                        <p class="text-muted">
+                            <span class="tag tag-danger">UI Design</span>
+                            <span class="tag tag-success">Coding</span>
+                            <span class="tag tag-info">Javascript</span>
+                            <span class="tag tag-warning">PHP</span>
+                            <span class="tag tag-primary">Node.js</span>
+                        </p>
+
+                        <hr>
+
+                        <strong><i class="fas fa-file-alt mr-1"></i> Hobiler</strong>
+
+                        <p class="text-muted">@Model.Hobiler</p>
+
+                        <hr>
+                        @if (Model.kullanicilar.KCinsiyet == true && Model.AskerliID != null)
+                        {<strong><i class="fas fa-tasks mr-1"></i>Askerlik Durumu</strong>
+
+                            <p class="text-muted">@Model.askerlik.AskerlikDurum</p>
+
+                            <hr>
+                        }
+
+
+                        <strong><i class="far fa-user mr-1"></i> Referenslar</strong>
+                        @foreach (var Ref in Model.referanslar)
+                        {
+                            <div class="card card-secondary">
+                                <div class="card-title">
+                                    <h6>@Ref.RefAdi @Ref.RefSoyad</h6>
+                                </div>
+                                <p class="text-muted">Mail:@Ref.RefMail</p>
+                                <p class="text-muted">Tel:@Ref.RefTel</p>
+                            </div>
+                        }
+
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link active" href="#OnYazi" data-toggle="tab"><b>Ön Yazı</b></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#Sertifika" data-toggle="tab">Sertifikalar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#Seminer" data-toggle="tab">Seminer</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#Deneyim" data-toggle="tab">Deneyim</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#Proje" data-toggle="tab">Proje</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#YabanciDil" data-toggle="tab">Dil</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#Tüm" data-toggle="tab">Tümü</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="OnYazi">
+                                <div class="card card-success">
+                                    <div class="card-header">
+                                        <h6>Ön Yazi</h6>
+                                    </div>
+                                    <p class="text-muted"> @Model.BOnYazi</p>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane" id="Sertifika">
+
+                                @Html.Partial("SertifikaView", @Model)
+                            </div>
+
+                            <div class="tab-pane" id="Seminer">
+                                @Html.Partial("SeminerView", @Model)
+                            </div>
+                            <div class="tab-pane" id="Deneyim">
+                                @Html.Partial("DeneyimView", @Model)
+                            </div>
+                            <div class="tab-pane" id="Proje">
+                                @Html.Partial("ProjeView", @Model)
+                            </div>
+                            <div class="tab-pane" id="YabanciDil">
+                                @Html.Partial("YabanciDilView", @Model)
+                            </div>
+
+                            <div class="tab-pane" id="Tüm">
+                                @Html.Partial("DeneyimView", @Model)
+                                @Html.Partial("SeminerView", @Model)
+                                @Html.Partial("SertifikaView", @Model)
+                                @Html.Partial("ProjeView", @Model)
+                                @Html.Partial("YabanciDilView", @Model)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+@section Section {
+
+
+    <script src="~/Content/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/Content/plugins/toastr/toastr.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+
+            $('.toastsDefaultDanger').click(function () {
+                $(document).Toasts('create', {
+                    class: 'bg-danger',
+                    title: 'Basvuru Onaylanamaz!',
+                    subtitle: '',
+                    body: '@TempData["onayUyari"]'
+                })
+            });
+        });
+
+        $("#BOnay").on("click", function () {
+            var BID = $("#BOnay").val();
+            $.ajax({
+                type: "GET",
+                url: '/Admin/BasvuruOnay',
+                data: { BID : BID },
+                dataType: "json",
+
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+            $(".BOnay").addClass("disabled");
+            $(".BRed").removeClass("disabled");
+        });
+
+        $("#BRed").on("click", function () {
+            var BID = $("#BRed").val();
+            $.ajax({
+                type: "GET",
+                url: '/Admin/BasvuruRed',
+                data: { BID: BID },
+                dataType: "json",
+
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+            $(".BRed").addClass("disabled");
+            $(".BOnay").removeClass("disabled");
+        });
+    </script>
+}

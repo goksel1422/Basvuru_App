@@ -1,0 +1,191 @@
+﻿@using Basvuru_App.Models
+@model List<universiteler>
+@{
+    Layout = null;
+}
+
+
+<div class="card card-info">
+
+    <div class="card-header ">
+        <h3 class="card-title">Başvuru Ön Bilgileri</h3>
+    </div>
+
+    <div class="card-body register-card-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+
+                    <div class="card-body">
+
+                        <div class="row margin">
+
+                            <div class="col-sm-6">
+                                <label>Ücret Beklentisi</label>
+                                <input id="range_1" type="number" name="range_5" value="">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Tahmini Çalışma Süresi</label>
+                                <input id="range_2" type="text" name="range_5" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body row d-flex align-items-stretch">
+
+            <div class="form-group col-lg-6">
+                <div class="form-group">
+                    <label for="inputStatus">Meslek</label>
+                    <input type="text" class="form-control" name="Bmeslek" value="" id="Bmeslek" placeholder="Örneğin: Bilgisayar Mühendisliği" autocomplete="off" required="required">
+                    <input type="number" name="BmeslekId" id="BmeslekId" hidden="hidden" required="required">
+                </div>
+                @if(Convert.ToBoolean(TempData["askerlikDurum"])  == true ) {
+                <div class="form-group">
+                    <label>Askerlik Durumu</label>
+                    <select class="form-control" id="askerlik" name="askerlik">
+                        <option selected="" disabled="">Bir Secim Yapın</option>
+                        @foreach (var Uniler in ViewBag.AskerlikViewBag)
+                        {
+                            <option id="ilText" value="@Uniler.AskerliID">@Uniler.AskerlikDurum</option>
+                        }
+                    </select>
+                </div>
+                }
+            </div>
+            <div class="form-group col-lg-6">
+
+                <div class="form-group">
+                    <label for="inputStatus">Üniversite</label>
+                    <select class="form-control" id="uniler" name="uniler">
+                        <option selected="" disabled="">Bir Secim Yapın</option>
+                        @foreach (var Uniler in Model)
+                        {
+                            <option id="ilText" value="@Uniler.uni_id">@Uniler.uni_name</option>
+                        }
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="inputStatus">Fakülte</label>
+
+                    <select class="form-control" id="fakulteler" name="fakulteler">
+                        <option selected="" disabled="">Bir Seçim Yapın</option>
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="inputStatus">Bölüm</label>
+
+                    <select class="form-control" id="bolumler" name="bolumler">
+                        <option selected="" disabled="">Bir Seçim Yapın</option>
+                    </select>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="~/Content/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+<script src="~/Content/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+<script src="~/Content/docs/assets/js/jquery-ui.min.js"></script>
+<script>
+    $(function () {
+        var a, b;
+        /* BOOTSTRAP SLIDER */
+        $('.slider').bootstrapSlider()
+
+        /* ION SLIDER */
+        $('#range_1').ionRangeSlider({
+            min: 0,
+            max: 20000,
+            from: a,
+            type: 'single',
+            step: 100,
+            postfix: ' ₺',
+            prettify: false,
+            hasGrid: true,
+
+        })
+
+
+        $('#range_2').ionRangeSlider({
+                min: 0,
+                max: 72,
+                from: b,
+                type: 'single',
+                step: 1,
+                postfix: ' Ay',
+                prettify: false,
+                hasGrid: true
+            })
+    })
+    a = document.getElementById("range_1").value;
+    b = document.getElementById("range_2").value;
+
+
+    $("#Bmeslek").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "/Partial/MeslekGetir/" + request.term,
+                type: "GET",
+                dataType: "json",
+                data: { Prefix: request.term },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return {
+                            label: item.value,
+                            value: item.value,
+                            id: item.title
+                        };
+                    }))
+
+                }
+            })
+        },
+        messages: {
+            noResults: "", results: ""
+        },
+        minLength: 3,
+        select: function (event, ui) {
+            $("#BmeslekId").val(ui.item.id);
+        }
+    });
+
+    $(document).ready(function () {
+        $("#uniler").change(function () {
+            $("#fakulteler").empty();
+            var UniID = $("#uniler").val();
+            $.ajax({
+                url: '@Url.Action("FakulteGetir","Partial")',
+                type: "POST",
+                dataType: "json",
+                data: { UniID: UniID },
+                success: function (data) {
+                    $.each(data, function () {
+                        $('#fakulteler').append('<option value=' + this.Value + '>' + this.Text + '</option>');
+                    });
+                }
+            });
+        });
+        $("#fakulteler").change(function () {
+                $("#bolumler").empty();
+                var BolumID = $("#fakulteler").val();
+            $.ajax({
+                url: '@Url.Action("BolumGetir","Partial")',
+                type: "POST",
+                dataType: "json",
+                data: { BolumID: BolumID },
+                success: function (data) {
+                    $.each(data, function () {
+                        $('#bolumler').append('<option value=' + this.Value  + '>' + this.Text +'</option>');
+                    });
+                }
+            });
+            });
+    });
+
+</script>

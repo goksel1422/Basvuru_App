@@ -1,0 +1,153 @@
+﻿@using Basvuru_App.Models;
+@model List<iller>
+<link href="~/Content/docs/assets/js/jquery-ui.min.css" rel="stylesheet" />
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content bg-light">
+        <div class="modal-header">
+            <h4 class="modal-title">Deneyim Ekleyin</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body ui-front">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="inputName">Firma Adı</label>
+                    <input type="text" id="deneyimKurum" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputStatus">Deneyim Türü</label>
+                    <input type="text" class="form-control" name="meslek" value="" id="meslek" placeholder="Örneğin: Bilgisayar Mühendisliği" autocomplete="off" required="required">
+                    <input class="form-control" type="number" name="meslekId" id="meslekId" hidden="hidden" required="required">
+
+                </div>
+                <div class="form-group">
+                    <label for="inputStatus">Deneyim Yeri</label>
+                    <select class="form-control custom-select" id="deneyimYeri">
+                        <option selected="" disabled="">Select one</option>
+                        @foreach (var iller in Model)
+                        {
+                            <option id="ilText" value="@iller.IlID">@iller.Il</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputName">Başlama Tarihi</label>
+                    <input type="date" id="baslamaTarihi" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputName">Bitiş Tarihi</label>
+                    <input type="date" id="bitisTarihi" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputName">İş Tanımı</label>
+                    <textarea type="text" id="isTanimi" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Sil</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" id="deneyimSave">Kaydet</button>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+<script src="~/Content/docs/assets/js/jquery-ui.min.js"></script>
+<script>
+    $("#deneyimSave").on("click", function () {
+        var iller = {
+            "deneyimYeriVal": $('#deneyimYeri').val(),
+            "deneyimYeriText": $('#deneyimYeri option:selected').text(),
+        }
+        var meslek = {
+            "meslekText": $('#meslek').val(),
+            "meslekVal": $('#meslekId').val(),
+
+        }
+        var veri = {
+            "iller": iller,
+            "meslek": meslek,
+            "deneyimKurum": $('#deneyimKurum').val(),
+            "baslamaTarihi": $('#baslamaTarihi').val(),
+            "deneyimYeriVal": $('#deneyimYeri').val(),
+            "bitisTarihi": $('#bitisTarihi').val(),
+            "isTanimi": $('#isTanimi').val(),
+        };
+        var tr = $("<tr></tr>").addClass("tablo");
+        var td1 = $("<td></td>").text(veri.deneyimKurum).addClass("deneyimKurum");
+        var td2 = $("<td></td>").text(veri.meslek.meslekText);
+        var td3 = $("<td></td>").text(veri.iller.deneyimYeriText);
+        var td4 = $("<td></td>").text(veri.baslamaTarihi).addClass("baslamaTarihi");
+        var td5 = $("<td></td>").text(veri.bitisTarihi).addClass("bitisTarihi");
+        var td6 = $("<td></td>").text(veri.isTanimi).addClass("isTanimi");
+        var td7 = $("<td></td>").text(veri.iller.deneyimYeriVal).addClass("deneyimYeriVal").hide();
+        var td8 = $("<td></td>").text(veri.meslek.meslekVal).addClass("meslekVal").hide();
+        var tdPer = $("<td></td>").addClass("text-right py-0 align-middle");
+        var div = $("<div></div>").addClass("btn-group btn-group-sm");
+        var a1 = $("<a></a>").addClass("btn btn-info").on("click", function () {
+            var url = $("#deneyimModal").data("url");
+            $.get(url, function (data) {
+                $("#deneyimModal").html(data);
+                $("#deneyimKurum").val(veri.deneyimKurum);
+                $("#meslek").val(veri.meslek.meslekText);
+                $("#deneyimYeri").val(veri.iller.deneyimYeriVal);
+                $("#baslamaTarihi").val(veri.baslamaTarihi);
+                $("#bitisTarihi").val(veri.bitisTarihi);
+                $("#isTanimi").val(veri.isTanimi);
+                $("#deneyimModal").modal("show");
+            });
+            $(this).parents(".tablo").remove();
+        });
+        var i1 = $("<i></i>").addClass("fas fa-eye");
+        var i2 = $("<i></i>").addClass("fas fa-trash");
+        tr.append(td1);
+        tr.append(td2);
+        tr.append(td3);
+        tr.append(td4);
+        tr.append(td5);
+        tr.append(td6);
+        tr.append(td7);
+        tr.append(td8);
+        tr.append(tdPer);
+        tdPer.append(div);
+        div.append(a1);
+        a1.append(i1);
+        a1.append(i2);
+        sayi++;
+        $("#deneyimTablo").append(tr);
+
+    });
+
+        $("#meslek").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Partial/MeslekGetir/" + request.term,
+                    type: "GET",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                value: item.value,
+                                id: item.title
+                            };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            },
+            minLength: 3,
+            select: function (event, ui) {
+                $("#meslekId").val(ui.item.id);
+            }
+        });
+
+
+
+</script>

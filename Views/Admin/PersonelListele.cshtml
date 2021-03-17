@@ -1,0 +1,74 @@
+﻿@using Basvuru_App.Models;
+@model List<basvurular>
+
+@{
+    ViewBag.Title = "PersonelListele";
+    Layout = "~/Views/Shared/Layout_Views/Admin_Layout.cshtml";
+}
+
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title">Personel Listesi</h3>
+            </div>
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Meslek</th>
+                            <th>Adı</th>
+                            <th>Soyadı</th>
+                            <th>Üniversitesi</th>
+                            <th>İncele</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var basvuru in Model)
+                        {
+                            <tr>
+                                <td class="text-muted text-sm">@basvuru.meslekler.isim</td>
+                                <td class="text-muted text-sm">@basvuru.kullanicilar.KAdi</td>
+                                <td class="text-muted text-sm">@basvuru.kullanicilar.KSoyad</td>
+                                <td class="text-muted text-sm">@basvuru.bolumler.fakulteler.universiteler.uni_name </td>
+                                <td> <a class="btn btn-sm btn-primary" href="~/Admin/PersonelIncele/@basvuru.BID"><i class="fas fa-info-circle"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Meslek</th>
+                            <th>Adı</th>
+                            <th>Soyadı</th>
+                            <th>Üniversitesi</th>
+                            <th>İncele</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+
+   
+    @section Section {
+        <script src="~/Content/plugins/datatables/jquery.dataTables.js"></script>
+        <script src="~/Content/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+        <script>
+            $(function () {
+                $("#example1").DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                });
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                });
+            });</script>
+    }

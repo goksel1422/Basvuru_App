@@ -1,0 +1,109 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content bg-light">
+        <div class="modal-header">
+            <h4 class="modal-title">Seminer Ekleyin</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="inputName">Eğitim Adi</label>
+                    <input value="" type="text" id="seminerAdi" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName">Eğitim Kurum</label>
+                    <input type="text" id="egitimKurum" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputName">Eğitmen Adı</label>
+                    <input type="text" id="egitmenAdi" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputName">Eğitmen Soyadı</label>
+                    <input type="text" id="egitmenSoyAdi" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName">Başlama Tarihi</label>
+                    <input type="date" id="baslamaTarihi" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputName">Bitiş Tarihi</label>
+                    <input type="date" id="bitisTarihi" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputDescription">Seminer Veya Kurs Döküman Ekle (.Pdf & .Docx)</label>
+                    <div class="col-lg-3">
+                        <input type="file" name="yuklenecekPdf" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Sil</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" id="seminerSave">Kaydet</button>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<script>
+    $("#seminerSave").on("click", function () {
+        var veri = {
+            "seminerAdi": $('#seminerAdi').val(),
+            "egitimKurum": $('#egitimKurum').val(),
+            "egitmenAdi": $('#egitmenAdi').val(),
+            "egitmenSoyAdi": $('#egitmenSoyAdi').val(),
+            "baslamaTarihi": $('#baslamaTarihi').val(),
+            "bitisTarihi": $('#bitisTarihi').val(),
+        };
+        var tr = $("<tr></tr>").addClass("tablo");
+        var td1 = $("<td></td>").text(veri.seminerAdi).addClass("seminerAdi");
+        var td2 = $("<td></td>").text(veri.egitimKurum).addClass("egitimKurum");
+        var td3 = $("<td></td>").text(veri.egitmenAdi).addClass("egitmenAdi");
+        var td4 = $("<td></td>").text(veri.egitmenSoyAdi).addClass("egitmenSoyAdi");
+        var td5 = $("<td></td>").text(veri.baslamaTarihi).addClass("baslamaTarihi");
+        var td6 = $("<td></td>").text(veri.bitisTarihi).addClass("bitisTarihi");
+        var tdPer = $("<td></td>").addClass("text-right py-0 align-middle");
+        var div = $("<div></div>").addClass("btn-group btn-group-sm");
+        var a1 = $("<a></a>").addClass("btn btn-info").on("click", function () {
+            var url = $("#seminerModal").data("url");
+            $.get(url, function (data) {
+                $("#seminerModal").html(data);
+                $("#seminerAdi").val(veri.seminerAdi);
+                $("#egitimKurum").val(veri.egitimKurum);
+                $("#egitmenAdi").val(veri.egitmenAdi);
+                $("#egitmenSoyAdi").val(veri.egitmenSoyAdi);
+                $("#baslamaTarihi").val(veri.baslamaTarihi);
+                $("#bitisTarihi").val(veri.bitisTarihi);
+                $("#seminerModal").modal("show");
+            });
+            $(this).parents(".tablo").remove();
+        });
+        var i1 = $("<i></i>").addClass("fas fa-eye");
+        var i2 = $("<i></i>").addClass("fas fa-trash");
+        tr.append(td1);
+        tr.append(td2);
+        tr.append(td3);
+        tr.append(td4);
+        tr.append(td5);
+        tr.append(td6);
+        tr.append(tdPer);
+        tdPer.append(div);
+        div.append(a1);
+        a1.append(i1);
+        a1.append(i2);
+        sayi++;
+        $("#seminerTablo").append(tr);
+
+    });
+
+</script>

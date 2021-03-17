@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Projeler</h3>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Proje Adı</th>
+                    <th>proje Açıklaması</th>
+                </tr>
+            </thead>
+            <tbody id="projeTablo">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="projeModal" style="display: none;" aria-hidden="true" data-url='@Url.Action("projeModal","Modal")'>
+</div>
+<button type="button" class="btn btn-success" id="projeModal-lg">Deneyim Ekle</button>
+<script>
+    $("#projeModal-lg").on("click", function () {
+        var url = $("#projeModal").data("url");
+        $.get(url, function (data) {
+            $("#projeModal").html(data).modal("show");
+        });
+
+    });
+</script>

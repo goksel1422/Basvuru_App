@@ -1,0 +1,96 @@
+﻿@using Basvuru_App.Models;
+@model List<basari_seviyeleri>
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content bg-light">
+        <div class="modal-header">
+            <h4 class="modal-title">Yabanci Dil Ekleyin</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body ui-front">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="inputStatus">Yabanci Dil</label>
+                    <select class="form-control custom-select" id="dilAdi">
+                        <option selected="" disabled="">Select one</option>
+                        @foreach (var dilveri in ViewBag.dillerViewBag)
+                        {
+                            <option value="@dilveri.DilID">@dilveri.DilAdi</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputStatus">Dil Seviyesi</label>
+                    <select class="form-control custom-select" id="dilSeviyesi">
+                        <option selected="" disabled="">Select one</option>
+                        @foreach (var dilsev in Model)
+                        {
+                            <option value="@dilsev.BasSeviyeID">@dilsev.BasSeviyesi</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Sil</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" id="Save">Kaydet</button>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+<script>
+    $("#Save").on("click", function () {
+        var dilSeviyesi = {
+            "dilSeviyesiVal": $('#dilSeviyesi').val(),
+            "dilSeviyesiText": $('#dilSeviyesi option:selected').text(),
+        }
+        var diller = {
+            "dilAdiVal": $('#dilAdi').val(),
+            "dilAdiText": $('#dilAdi option:selected').text(),
+        }
+        var veri = {
+            "dilSeviyesi": dilSeviyesi,
+            "diller": diller,
+
+        };
+        var tr = $("<tr></tr>").addClass("tablo");
+        var td1 = $("<td></td>").text(veri.diller.dilAdiText);
+        var td2 = $("<td></td>").text(veri.dilSeviyesi.dilSeviyesiText);
+        var td3 = $("<td></td>").text(veri.diller.dilAdiVal).addClass("dilAdiVal").hide();
+        var td4 = $("<td></td>").text(veri.dilSeviyesi.dilSeviyesiVal).addClass("dilSeviyesiVal").hide();
+        var tdPer = $("<td></td>").addClass("text-right py-0 align-middle");
+        var div = $("<div></div>").addClass("btn-group btn-group-sm");
+        var a1 = $("<a></a>").addClass("btn btn-info").on("click", function () {
+            var url = $("#yabanciDilModal").data("url");
+            $.get(url, function (data) {
+                $("#yabanciDilModal").html(data);
+                $("#dilAdi").val(veri.diller.dilAdiVal);
+                $("#dilSeviyesi").val(veri.dilSeviyesi.dilSeviyesiVal);
+                $("#yabanciDilModal").modal("show");
+            });
+            $(this).parents(".tablo").remove();
+        });
+        var i1 = $("<i></i>").addClass("fas fa-eye");
+        var i2 = $("<i></i>").addClass("fas fa-trash");
+        tr.append(td1);
+        tr.append(td2);
+        tr.append(td3);
+        tr.append(td4);
+        tr.append(tdPer);
+        tdPer.append(div);
+        div.append(a1);
+        a1.append(i1);
+        a1.append(i2);
+        sayi++;
+        $("#yabanciDilTablo").append(tr);
+
+    });
+
+</script>

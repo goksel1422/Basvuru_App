@@ -1,0 +1,103 @@
+﻿@using Basvuru_App.Models
+@model List<kullanicilar>
+@{
+    ViewBag.Title = "YeniBasvuruAdmin";
+    Layout = "~/Views/Shared/Layout_Views/Admin_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header p-2">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link active" id="basvuranBilgi" href="#BasvuranBilgi" data-toggle="tab"><b>Başvurun Kullanıcı</b></a></li>
+            <li class="nav-item"><a class="nav-link" href="#OnYaziHobi" data-toggle="tab">Ön Yazı Ve Hobi</a></li>
+            <li class="nav-item"><a class="nav-link" id="basvuruVeri" href="#BasvuruVeri" data-toggle="tab">Başvuru Ön Bilgileri</a></li>
+            <li class="nav-item"><a class="nav-link" id="sertifikalar" href="#Sertifika" data-toggle="tab">Sertifikalar</a></li>
+            <li class="nav-item"><a class="nav-link" id="seminer" href="#Seminer" data-toggle="tab">Seminer</a></li>
+            <li class="nav-item"><a class="nav-link" id="deneyimler" href="#Deneyim" data-toggle="tab">Deneyim</a></li>
+            <li class="nav-item"><a class="nav-link" id="proje" href="#Proje" data-toggle="tab">Proje</a></li>
+            <li class="nav-item"><a class="nav-link" id="yabanciDil" href="#YabanciDil" data-toggle="tab">Dil</a></li>
+            <li class="nav-item"><a class="nav-link" id="referans" href="#Referans" data-toggle="tab">Referans</a></li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="tab-content">
+            <div class="active  tab-pane" id="BasvuranBilgi">
+                <div class="card card-info">
+
+                    <div class="card-header ">
+                        <h3 class="card-title">Başvuru Sahibi</h3>
+                    </div>
+
+                    <div class="card-body register-card-body">
+
+                        <div class="card-body row d-flex align-items-stretch">
+
+
+                            <div class="form-group col-lg-6">
+
+                                <div class="form-group">
+                                    <label for="inputStatus">Kim İçin Başvuru Yapıyorsunuz?</label>
+                                    <select class="form-control" id="kisiler" name="kisiler">
+                                        <option selected="" disabled="">Bir Secim Yapın</option>
+                                        @foreach (var kisiler in Model)
+                                        {
+                                            <option id="ilText" value="@kisiler.KID">@kisiler.KAdi @kisiler.KSoyad</option>
+                                        }
+                                    </select>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tab-pane" id="OnYaziHobi">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h6>Ön Yazi</h6>
+                    </div>
+                    <textarea id="onYazi" type="text" class="form-control" rows="6"></textarea>
+                </div>
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h6>Hobiler</h6>
+                    </div>
+                    <textarea id="hobiler" type="text" class="form-control" rows="6"></textarea>
+                </div>
+
+            </div>
+
+            <div class="tab-pane" id="BasvuruVeri" data-url='@Url.Action("BasvuruVeriPartial","Partial")'></div>
+
+            <div class="tab-pane" id="Sertifika" data-url='@Url.Action("SertifikaPartial","Partial")'></div>
+
+            <div class="tab-pane" id="Seminer" data-url='@Url.Action("SeminerPartial","Partial")'></div>
+
+            <div class="tab-pane" id="Deneyim" data-url='@Url.Action("DeneyimPartial","Partial")'></div>
+
+            <div class="tab-pane" id="Proje" data-url='@Url.Action("ProjePartial","Partial")'></div>
+
+            <div class="tab-pane" id="YabanciDil" data-url='@Url.Action("YabanciDilPartial","Partial")'></div>
+
+            <div class="tab-pane" id="Referans" data-url='@Url.Action("ReferansPartial","Partial")'></div>
+
+        </div>
+
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-warning" id="Post">Başvuruyu Ekle</button>
+    </div>
+</div>
+
+@section BasvuruSection{
+
+    <script src="~/Scripts/YeniBasvuru/yeniBasvuruClick.js"></script>
+    <script src="~/Scripts/YeniBasvuru/yeniBasvuruPostAdmin.js"></script>
+
+}
+

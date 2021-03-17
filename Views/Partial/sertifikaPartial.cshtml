@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Sertifikalar</h3>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sertifika Adı</th>
+                    <th>Alindığı Kurum</th>
+                    <th>Alım Tarihi</th>
+                </tr>
+            </thead>
+            <tbody id="sertifikaTablo">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="sertifikaModal" style="display: none;" aria-hidden="true" data-url='@Url.Action("SertifikaModal","Modal")'>
+
+</div>
+<button type="button" class="btn btn-success" id="serModal-lg">Sertifika Ekle</button>
+<script>
+    $("#serModal-lg").on("click", function () {
+        var url = $("#sertifikaModal").data("url");
+        $.get(url, function (data) {
+            $("#sertifikaModal").html(data).modal("show");
+        });
+
+    });
+</script>

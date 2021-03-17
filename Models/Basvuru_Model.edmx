@@ -1,0 +1,1444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="basvuruModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="askerlik">
+          <Key>
+            <PropertyRef Name="AskerliID" />
+          </Key>
+          <Property Name="AskerliID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AskerlikDurum" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="basari_seviyeleri">
+          <Key>
+            <PropertyRef Name="BasSeviyeID" />
+          </Key>
+          <Property Name="BasSeviyeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BasSeviyesi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="basvuru_durumu">
+          <Key>
+            <PropertyRef Name="BDurumID" />
+          </Key>
+          <Property Name="BDurumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BDurum" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="basvurular">
+          <Key>
+            <PropertyRef Name="BID" />
+          </Key>
+          <Property Name="BID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KID" Type="int" />
+          <Property Name="Ucret_Beklenti" Type="int" />
+          <Property Name="TCalSure" Type="int" />
+          <Property Name="bolum_id" Type="int" />
+          <Property Name="BDurumID" Type="int" />
+          <Property Name="Hobiler" Type="varchar" MaxLength="50" />
+          <Property Name="BOnYazi" Type="varchar" MaxLength="10240" />
+          <Property Name="AskerliID" Type="int" />
+          <Property Name="MeslekID" Type="int" />
+        </EntityType>
+        <EntityType Name="bolumler">
+          <Key>
+            <PropertyRef Name="bolum_id" />
+          </Key>
+          <Property Name="bolum_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bolum_ad" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="fakulte_id" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="byabancidil">
+          <Key>
+            <PropertyRef Name="BYDilID" />
+          </Key>
+          <Property Name="BYDilID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DilID" Type="int" />
+          <Property Name="BID" Type="int" />
+          <Property Name="BasSeviyeID" Type="int" />
+        </EntityType>
+        <EntityType Name="deneyim">
+          <Key>
+            <PropertyRef Name="DeneyimID" />
+          </Key>
+          <Property Name="DeneyimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BaslamaTar" Type="date" />
+          <Property Name="BitisTar" Type="date" />
+          <Property Name="FirmaAdi" Type="varchar" MaxLength="50" />
+          <Property Name="IlID" Type="int" />
+          <Property Name="IsTanimi" Type="varchar" MaxLength="256" />
+          <Property Name="BID" Type="int" />
+          <Property Name="MeslekID" Type="int" />
+        </EntityType>
+        <EntityType Name="diller">
+          <Key>
+            <PropertyRef Name="DilID" />
+          </Key>
+          <Property Name="DilID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DilAdi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="fakulteler">
+          <Key>
+            <PropertyRef Name="fakulte_id" />
+          </Key>
+          <Property Name="fakulte_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fakulte_ad" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="uni_id" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ilceler">
+          <Key>
+            <PropertyRef Name="IlceID" />
+          </Key>
+          <Property Name="IlceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ilce" Type="varchar" MaxLength="50" />
+          <Property Name="IlID" Type="int" />
+        </EntityType>
+        <EntityType Name="iller">
+          <Key>
+            <PropertyRef Name="IlID" />
+          </Key>
+          <Property Name="IlID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Il" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="KID" />
+          </Key>
+          <Property Name="KID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KAdi" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="YetkiID" Type="int" />
+          <Property Name="KSoyad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="KEposta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="KSifre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="KDogTar" Type="date" />
+          <Property Name="KTelNo" Type="varchar" MaxLength="50" />
+          <Property Name="KIban" Type="varchar" MaxLength="50" />
+          <Property Name="KCinsiyet" Type="bit" />
+          <Property Name="KResim" Type="varchar" MaxLength="50" />
+          <Property Name="IlceID" Type="int" />
+        </EntityType>
+        <EntityType Name="meslekler">
+          <Key>
+            <PropertyRef Name="MeslekID" />
+          </Key>
+          <Property Name="MeslekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kod" Type="varchar" MaxLength="255" />
+          <Property Name="isim" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="projeler">
+          <Key>
+            <PropertyRef Name="ProjeID" />
+          </Key>
+          <Property Name="ProjeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeAdi" Type="varchar" MaxLength="50" />
+          <Property Name="Proje_Aciklama" Type="varchar" MaxLength="1024" />
+          <Property Name="BID" Type="int" />
+        </EntityType>
+        <EntityType Name="referanslar">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RefAdi" Type="varchar" MaxLength="50" />
+          <Property Name="RefSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="RefMail" Type="varchar" MaxLength="50" />
+          <Property Name="RefTel" Type="varchar" MaxLength="12" />
+          <Property Name="BID" Type="int" />
+        </EntityType>
+        <EntityType Name="sem_kurs">
+          <Key>
+            <PropertyRef Name="SKID" />
+          </Key>
+          <Property Name="SKID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EgitimAdi" Type="varchar" MaxLength="128" />
+          <Property Name="Egitim_Kurumu" Type="varchar" MaxLength="128" />
+          <Property Name="Egitmen_Adi" Type="varchar" MaxLength="50" />
+          <Property Name="Egitmen_Soyadi" Type="varchar" MaxLength="50" />
+          <Property Name="Bas_Tar" Type="date" />
+          <Property Name="Bitis_Tar" Type="date" />
+          <Property Name="BID" Type="int" />
+        </EntityType>
+        <EntityType Name="sertifikalar">
+          <Key>
+            <PropertyRef Name="SertifikaID" />
+          </Key>
+          <Property Name="SertifikaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SertifikaAdi" Type="varchar" MaxLength="50" />
+          <Property Name="Alindigi_Kurum" Type="varchar" MaxLength="50" />
+          <Property Name="BID" Type="int" />
+          <Property Name="AlimTar" Type="date" />
+          <Property Name="SertifikaPDF" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="universiteler">
+          <Key>
+            <PropertyRef Name="uni_id" />
+          </Key>
+          <Property Name="uni_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uni_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IlID" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="yetkiler">
+          <Key>
+            <PropertyRef Name="YetkiID" />
+          </Key>
+          <Property Name="YetkiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Yetki" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="basvurular_ibfk_3">
+          <End Role="bolumler" Type="Self.bolumler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bolumler">
+              <PropertyRef Name="bolum_id" />
+            </Principal>
+            <Dependent Role="basvurular">
+              <PropertyRef Name="bolum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="basvurular_ibfk_4">
+          <End Role="basvuru_durumu" Type="Self.basvuru_durumu" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvuru_durumu">
+              <PropertyRef Name="BDurumID" />
+            </Principal>
+            <Dependent Role="basvurular">
+              <PropertyRef Name="BDurumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="basvurular_ibfk_7">
+          <End Role="askerlik" Type="Self.askerlik" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="askerlik">
+              <PropertyRef Name="AskerliID" />
+            </Principal>
+            <Dependent Role="basvurular">
+              <PropertyRef Name="AskerliID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="basvurular_ibfk_8">
+          <End Role="meslekler" Type="Self.meslekler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="meslekler">
+              <PropertyRef Name="MeslekID" />
+            </Principal>
+            <Dependent Role="basvurular">
+              <PropertyRef Name="MeslekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="basvurular_ibfk_9">
+          <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanicilar">
+              <PropertyRef Name="KID" />
+            </Principal>
+            <Dependent Role="basvurular">
+              <PropertyRef Name="KID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bolumler_ibfk_1">
+          <End Role="fakulteler" Type="Self.fakulteler" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bolumler" Type="Self.bolumler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fakulteler">
+              <PropertyRef Name="fakulte_id" />
+            </Principal>
+            <Dependent Role="bolumler">
+              <PropertyRef Name="fakulte_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="byabancidil_ibfk_1">
+          <End Role="diller" Type="Self.diller" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="byabancidil" Type="Self.byabancidil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="diller">
+              <PropertyRef Name="DilID" />
+            </Principal>
+            <Dependent Role="byabancidil">
+              <PropertyRef Name="DilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="byabancidil_ibfk_3">
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="byabancidil" Type="Self.byabancidil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="byabancidil">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="byabancidil_ibfk_4">
+          <End Role="basari_seviyeleri" Type="Self.basari_seviyeleri" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="byabancidil" Type="Self.byabancidil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basari_seviyeleri">
+              <PropertyRef Name="BasSeviyeID" />
+            </Principal>
+            <Dependent Role="byabancidil">
+              <PropertyRef Name="BasSeviyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="deneyim_ibfk_1">
+          <End Role="iller" Type="Self.iller" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="deneyim" Type="Self.deneyim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iller">
+              <PropertyRef Name="IlID" />
+            </Principal>
+            <Dependent Role="deneyim">
+              <PropertyRef Name="IlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="deneyim_ibfk_3">
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="deneyim" Type="Self.deneyim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="deneyim">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="deneyim_ibfk_4">
+          <End Role="meslekler" Type="Self.meslekler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="deneyim" Type="Self.deneyim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="meslekler">
+              <PropertyRef Name="MeslekID" />
+            </Principal>
+            <Dependent Role="deneyim">
+              <PropertyRef Name="MeslekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fakulteler_ibfk_1">
+          <End Role="universiteler" Type="Self.universiteler" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="fakulteler" Type="Self.fakulteler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="universiteler">
+              <PropertyRef Name="uni_id" />
+            </Principal>
+            <Dependent Role="fakulteler">
+              <PropertyRef Name="uni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ilceler_ibfk_1">
+          <End Role="iller" Type="Self.iller" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ilceler" Type="Self.ilceler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iller">
+              <PropertyRef Name="IlID" />
+            </Principal>
+            <Dependent Role="ilceler">
+              <PropertyRef Name="IlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="kullanicilar_ibfk_1">
+          <End Role="yetkiler" Type="Self.yetkiler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yetkiler">
+              <PropertyRef Name="YetkiID" />
+            </Principal>
+            <Dependent Role="kullanicilar">
+              <PropertyRef Name="YetkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="kullanicilar_ibfk_2">
+          <End Role="ilceler" Type="Self.ilceler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ilceler">
+              <PropertyRef Name="IlceID" />
+            </Principal>
+            <Dependent Role="kullanicilar">
+              <PropertyRef Name="IlceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="projeler_ibfk_1">
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="0..1" />
+          <End Role="projeler" Type="Self.projeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="projeler">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="referanslar_ibfk_1">
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="referanslar" Type="Self.referanslar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="referanslar">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sem_kurs_ibfk_1">
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="sem_kurs" Type="Self.sem_kurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="sem_kurs">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sertifikalar_ibfk_1">
+          <End Role="basvurular" Type="Self.basvurular" Multiplicity="0..1" />
+          <End Role="sertifikalar" Type="Self.sertifikalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="sertifikalar">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="universiteler_ibfk_1">
+          <End Role="iller" Type="Self.iller" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="universiteler" Type="Self.universiteler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iller">
+              <PropertyRef Name="IlID" />
+            </Principal>
+            <Dependent Role="universiteler">
+              <PropertyRef Name="IlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="basvuruModelStoreContainer">
+          <EntitySet Name="askerlik" EntityType="Self.askerlik" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="basari_seviyeleri" EntityType="Self.basari_seviyeleri" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="basvuru_durumu" EntityType="Self.basvuru_durumu" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="basvurular" EntityType="Self.basvurular" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="bolumler" EntityType="Self.bolumler" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="byabancidil" EntityType="Self.byabancidil" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="deneyim" EntityType="Self.deneyim" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="diller" EntityType="Self.diller" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="fakulteler" EntityType="Self.fakulteler" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="ilceler" EntityType="Self.ilceler" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="iller" EntityType="Self.iller" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="meslekler" EntityType="Self.meslekler" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="projeler" EntityType="Self.projeler" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="referanslar" EntityType="Self.referanslar" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="sem_kurs" EntityType="Self.sem_kurs" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="sertifikalar" EntityType="Self.sertifikalar" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="universiteler" EntityType="Self.universiteler" Schema="basvuru" store:Type="Tables" />
+          <EntitySet Name="yetkiler" EntityType="Self.yetkiler" Schema="basvuru" store:Type="Tables" />
+          <AssociationSet Name="basvurular_ibfk_3" Association="Self.basvurular_ibfk_3">
+            <End Role="bolumler" EntitySet="bolumler" />
+            <End Role="basvurular" EntitySet="basvurular" />
+          </AssociationSet>
+          <AssociationSet Name="basvurular_ibfk_4" Association="Self.basvurular_ibfk_4">
+            <End Role="basvuru_durumu" EntitySet="basvuru_durumu" />
+            <End Role="basvurular" EntitySet="basvurular" />
+          </AssociationSet>
+          <AssociationSet Name="basvurular_ibfk_7" Association="Self.basvurular_ibfk_7">
+            <End Role="askerlik" EntitySet="askerlik" />
+            <End Role="basvurular" EntitySet="basvurular" />
+          </AssociationSet>
+          <AssociationSet Name="basvurular_ibfk_8" Association="Self.basvurular_ibfk_8">
+            <End Role="meslekler" EntitySet="meslekler" />
+            <End Role="basvurular" EntitySet="basvurular" />
+          </AssociationSet>
+          <AssociationSet Name="basvurular_ibfk_9" Association="Self.basvurular_ibfk_9">
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+            <End Role="basvurular" EntitySet="basvurular" />
+          </AssociationSet>
+          <AssociationSet Name="bolumler_ibfk_1" Association="Self.bolumler_ibfk_1">
+            <End Role="fakulteler" EntitySet="fakulteler" />
+            <End Role="bolumler" EntitySet="bolumler" />
+          </AssociationSet>
+          <AssociationSet Name="byabancidil_ibfk_1" Association="Self.byabancidil_ibfk_1">
+            <End Role="diller" EntitySet="diller" />
+            <End Role="byabancidil" EntitySet="byabancidil" />
+          </AssociationSet>
+          <AssociationSet Name="byabancidil_ibfk_3" Association="Self.byabancidil_ibfk_3">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="byabancidil" EntitySet="byabancidil" />
+          </AssociationSet>
+          <AssociationSet Name="byabancidil_ibfk_4" Association="Self.byabancidil_ibfk_4">
+            <End Role="basari_seviyeleri" EntitySet="basari_seviyeleri" />
+            <End Role="byabancidil" EntitySet="byabancidil" />
+          </AssociationSet>
+          <AssociationSet Name="deneyim_ibfk_1" Association="Self.deneyim_ibfk_1">
+            <End Role="iller" EntitySet="iller" />
+            <End Role="deneyim" EntitySet="deneyim" />
+          </AssociationSet>
+          <AssociationSet Name="deneyim_ibfk_3" Association="Self.deneyim_ibfk_3">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="deneyim" EntitySet="deneyim" />
+          </AssociationSet>
+          <AssociationSet Name="deneyim_ibfk_4" Association="Self.deneyim_ibfk_4">
+            <End Role="meslekler" EntitySet="meslekler" />
+            <End Role="deneyim" EntitySet="deneyim" />
+          </AssociationSet>
+          <AssociationSet Name="fakulteler_ibfk_1" Association="Self.fakulteler_ibfk_1">
+            <End Role="universiteler" EntitySet="universiteler" />
+            <End Role="fakulteler" EntitySet="fakulteler" />
+          </AssociationSet>
+          <AssociationSet Name="ilceler_ibfk_1" Association="Self.ilceler_ibfk_1">
+            <End Role="iller" EntitySet="iller" />
+            <End Role="ilceler" EntitySet="ilceler" />
+          </AssociationSet>
+          <AssociationSet Name="kullanicilar_ibfk_1" Association="Self.kullanicilar_ibfk_1">
+            <End Role="yetkiler" EntitySet="yetkiler" />
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="kullanicilar_ibfk_2" Association="Self.kullanicilar_ibfk_2">
+            <End Role="ilceler" EntitySet="ilceler" />
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="projeler_ibfk_1" Association="Self.projeler_ibfk_1">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="projeler" EntitySet="projeler" />
+          </AssociationSet>
+          <AssociationSet Name="referanslar_ibfk_1" Association="Self.referanslar_ibfk_1">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="referanslar" EntitySet="referanslar" />
+          </AssociationSet>
+          <AssociationSet Name="sem_kurs_ibfk_1" Association="Self.sem_kurs_ibfk_1">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="sem_kurs" EntitySet="sem_kurs" />
+          </AssociationSet>
+          <AssociationSet Name="sertifikalar_ibfk_1" Association="Self.sertifikalar_ibfk_1">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="sertifikalar" EntitySet="sertifikalar" />
+          </AssociationSet>
+          <AssociationSet Name="universiteler_ibfk_1" Association="Self.universiteler_ibfk_1">
+            <End Role="iller" EntitySet="iller" />
+            <End Role="universiteler" EntitySet="universiteler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="basvuruModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="basari_seviyeleri">
+          <Key>
+            <PropertyRef Name="BasSeviyeID" />
+          </Key>
+          <Property Name="BasSeviyeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BasSeviyesi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="byabancidil" Relationship="basvuruModel.byabancidil_ibfk_4" FromRole="basari_seviyeleri" ToRole="byabancidil" />
+          </EntityType>
+        <EntityType Name="basvuru_durumu">
+          <Key>
+            <PropertyRef Name="BDurumID" />
+          </Key>
+          <Property Name="BDurumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BDurum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.basvurular_ibfk_4" FromRole="basvuru_durumu" ToRole="basvurular" />
+        </EntityType>
+        <EntityType Name="bolumler">
+          <Key>
+            <PropertyRef Name="bolum_id" />
+          </Key>
+          <Property Name="bolum_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bolum_ad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fakulte_id" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="fakulteler" Relationship="Self.bolumler_ibfk_1" FromRole="bolumler" ToRole="fakulteler" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.basvurular_ibfk_3" FromRole="bolumler" ToRole="basvurular" />
+        </EntityType>
+        <EntityType Name="fakulteler">
+          <Key>
+            <PropertyRef Name="fakulte_id" />
+          </Key>
+          <Property Name="fakulte_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fakulte_ad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="uni_id" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bolumler" Relationship="Self.bolumler_ibfk_1" FromRole="fakulteler" ToRole="bolumler" />
+          <NavigationProperty Name="universiteler" Relationship="Self.fakulteler_ibfk_1" FromRole="fakulteler" ToRole="universiteler" />
+        </EntityType>
+        <EntityType Name="ilceler">
+          <Key>
+            <PropertyRef Name="IlceID" />
+          </Key>
+          <Property Name="IlceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ilce" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IlID" Type="Int32" />
+          <NavigationProperty Name="iller" Relationship="Self.ilceler_ibfk_1" FromRole="ilceler" ToRole="iller" />
+          <NavigationProperty Name="kullanicilar" Relationship="basvuruModel.kullanicilar_ibfk_2" FromRole="ilceler" ToRole="kullanicilar" />
+        </EntityType>
+        <EntityType Name="iller">
+          <Key>
+            <PropertyRef Name="IlID" />
+          </Key>
+          <Property Name="IlID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Il" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ilceler" Relationship="Self.ilceler_ibfk_1" FromRole="iller" ToRole="ilceler" />
+          <NavigationProperty Name="universiteler" Relationship="Self.universiteler_ibfk_1" FromRole="iller" ToRole="universiteler" />
+          <NavigationProperty Name="deneyim" Relationship="basvuruModel.deneyim_ibfk_1" FromRole="iller" ToRole="deneyim" />
+        </EntityType>
+        <EntityType Name="projeler">
+          <Key>
+            <PropertyRef Name="ProjeID" />
+          </Key>
+          <Property Name="ProjeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Proje_Aciklama" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="BID" Type="Int32" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.projeler_ibfk_1" FromRole="projeler" ToRole="basvurular" />
+        </EntityType>
+        <EntityType Name="sem_kurs">
+          <Key>
+            <PropertyRef Name="SKID" />
+          </Key>
+          <Property Name="SKID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EgitimAdi" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Egitim_Kurumu" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Egitmen_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Egitmen_Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Bas_Tar" Type="DateTime" />
+          <Property Name="Bitis_Tar" Type="DateTime" />
+          <Property Name="BID" Type="Int32" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.sem_kurs_ibfk_1" FromRole="sem_kurs" ToRole="basvurular" />
+        </EntityType>
+        <EntityType Name="universiteler">
+          <Key>
+            <PropertyRef Name="uni_id" />
+          </Key>
+          <Property Name="uni_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uni_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IlID" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="fakulteler" Relationship="Self.fakulteler_ibfk_1" FromRole="universiteler" ToRole="fakulteler" />
+          <NavigationProperty Name="iller" Relationship="Self.universiteler_ibfk_1" FromRole="universiteler" ToRole="iller" />
+        </EntityType>
+        <EntityType Name="yetkiler">
+          <Key>
+            <PropertyRef Name="YetkiID" />
+          </Key>
+          <Property Name="YetkiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Yetki" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="kullanicilar" Relationship="basvuruModel.kullanicilar_ibfk_1" FromRole="yetkiler" ToRole="kullanicilar" />
+        </EntityType>
+        <Association Name="bolumler_ibfk_1">
+          <End Role="fakulteler" Type="Self.fakulteler" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bolumler" Type="Self.bolumler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fakulteler">
+              <PropertyRef Name="fakulte_id" />
+            </Principal>
+            <Dependent Role="bolumler">
+              <PropertyRef Name="fakulte_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fakulteler_ibfk_1">
+          <End Role="universiteler" Type="Self.universiteler" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="fakulteler" Type="Self.fakulteler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="universiteler">
+              <PropertyRef Name="uni_id" />
+            </Principal>
+            <Dependent Role="fakulteler">
+              <PropertyRef Name="uni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ilceler_ibfk_1">
+          <End Role="iller" Type="Self.iller" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ilceler" Type="Self.ilceler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iller">
+              <PropertyRef Name="IlID" />
+            </Principal>
+            <Dependent Role="ilceler">
+              <PropertyRef Name="IlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="universiteler_ibfk_1">
+          <End Role="iller" Type="Self.iller" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="universiteler" Type="Self.universiteler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iller">
+              <PropertyRef Name="IlID" />
+            </Principal>
+            <Dependent Role="universiteler">
+              <PropertyRef Name="IlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="basvuruEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="basari_seviyeleri" EntityType="Self.basari_seviyeleri" />
+          <EntitySet Name="basvuru_durumu" EntityType="Self.basvuru_durumu" />
+          <EntitySet Name="bolumler" EntityType="Self.bolumler" />
+          <EntitySet Name="fakulteler" EntityType="Self.fakulteler" />
+          <EntitySet Name="ilceler" EntityType="Self.ilceler" />
+          <EntitySet Name="iller" EntityType="Self.iller" />
+          <EntitySet Name="projeler" EntityType="Self.projeler" />
+          <EntitySet Name="sem_kurs" EntityType="Self.sem_kurs" />
+          <EntitySet Name="universiteler" EntityType="Self.universiteler" />
+          <EntitySet Name="yetkiler" EntityType="Self.yetkiler" />
+          <AssociationSet Name="bolumler_ibfk_1" Association="Self.bolumler_ibfk_1">
+            <End Role="fakulteler" EntitySet="fakulteler" />
+            <End Role="bolumler" EntitySet="bolumler" />
+          </AssociationSet>
+          <AssociationSet Name="fakulteler_ibfk_1" Association="Self.fakulteler_ibfk_1">
+            <End Role="universiteler" EntitySet="universiteler" />
+            <End Role="fakulteler" EntitySet="fakulteler" />
+          </AssociationSet>
+          <AssociationSet Name="ilceler_ibfk_1" Association="Self.ilceler_ibfk_1">
+            <End Role="iller" EntitySet="iller" />
+            <End Role="ilceler" EntitySet="ilceler" />
+          </AssociationSet>
+          <AssociationSet Name="universiteler_ibfk_1" Association="Self.universiteler_ibfk_1">
+            <End Role="iller" EntitySet="iller" />
+            <End Role="universiteler" EntitySet="universiteler" />
+          </AssociationSet>
+          <EntitySet Name="referanslar" EntityType="basvuruModel.referanslar" />
+          <EntitySet Name="askerlik" EntityType="basvuruModel.askerlik" />
+          <EntitySet Name="diller" EntityType="basvuruModel.diller" />
+          <EntitySet Name="byabancidil" EntityType="basvuruModel.byabancidil" />
+          <AssociationSet Name="byabancidil_ibfk_4" Association="basvuruModel.byabancidil_ibfk_4">
+            <End Role="basari_seviyeleri" EntitySet="basari_seviyeleri" />
+            <End Role="byabancidil" EntitySet="byabancidil" />
+          </AssociationSet>
+          <AssociationSet Name="byabancidil_ibfk_1" Association="basvuruModel.byabancidil_ibfk_1">
+            <End Role="diller" EntitySet="diller" />
+            <End Role="byabancidil" EntitySet="byabancidil" />
+          </AssociationSet>
+          <EntitySet Name="deneyim" EntityType="basvuruModel.deneyim" />
+          <EntitySet Name="meslekler" EntityType="basvuruModel.meslekler" />
+          <AssociationSet Name="deneyim_ibfk_1" Association="basvuruModel.deneyim_ibfk_1">
+            <End Role="iller" EntitySet="iller" />
+            <End Role="deneyim" EntitySet="deneyim" />
+          </AssociationSet>
+          <AssociationSet Name="deneyim_ibfk_4" Association="basvuruModel.deneyim_ibfk_4">
+            <End Role="meslekler" EntitySet="meslekler" />
+            <End Role="deneyim" EntitySet="deneyim" />
+          </AssociationSet>
+          <EntitySet Name="kullanicilar" EntityType="basvuruModel.kullanicilar" />
+          <AssociationSet Name="kullanicilar_ibfk_2" Association="basvuruModel.kullanicilar_ibfk_2">
+            <End Role="ilceler" EntitySet="ilceler" />
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="kullanicilar_ibfk_1" Association="basvuruModel.kullanicilar_ibfk_1">
+            <End Role="yetkiler" EntitySet="yetkiler" />
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+          </AssociationSet>
+          <EntitySet Name="basvurular" EntityType="basvuruModel.basvurular" />
+          <AssociationSet Name="basvurular_ibfk_7" Association="basvuruModel.basvurular_ibfk_7">
+            <End Role="askerlik" EntitySet="askerlik" />
+            <End Role="basvurular" EntitySet="basvurular" />
+          </AssociationSet>
+          <AssociationSet Name="basvurular_ibfk_4" Association="basvuruModel.basvurular_ibfk_4">
+            <End Role="basvuru_durumu" EntitySet="basvuru_durumu" />
+            <End Role="basvurular" EntitySet="basvurular" />
+          </AssociationSet>
+          <AssociationSet Name="basvurular_ibfk_3" Association="basvuruModel.basvurular_ibfk_3">
+            <End Role="bolumler" EntitySet="bolumler" />
+            <End Role="basvurular" EntitySet="basvurular" />
+          </AssociationSet>
+          <AssociationSet Name="basvurular_ibfk_8" Association="basvuruModel.basvurular_ibfk_8">
+            <End Role="meslekler" EntitySet="meslekler" />
+            <End Role="basvurular" EntitySet="basvurular" />
+          </AssociationSet>
+          <AssociationSet Name="basvurular_ibfk_9" Association="basvuruModel.basvurular_ibfk_9">
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+            <End Role="basvurular" EntitySet="basvurular" />
+          </AssociationSet>
+          <AssociationSet Name="byabancidil_ibfk_3" Association="basvuruModel.byabancidil_ibfk_3">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="byabancidil" EntitySet="byabancidil" />
+          </AssociationSet>
+          <AssociationSet Name="deneyim_ibfk_3" Association="basvuruModel.deneyim_ibfk_3">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="deneyim" EntitySet="deneyim" />
+          </AssociationSet>
+          <AssociationSet Name="projeler_ibfk_1" Association="basvuruModel.projeler_ibfk_1">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="projeler" EntitySet="projeler" />
+          </AssociationSet>
+          <AssociationSet Name="referanslar_ibfk_1" Association="basvuruModel.referanslar_ibfk_1">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="referanslar" EntitySet="referanslar" />
+          </AssociationSet>
+          <AssociationSet Name="sem_kurs_ibfk_1" Association="basvuruModel.sem_kurs_ibfk_1">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="sem_kurs" EntitySet="sem_kurs" />
+          </AssociationSet>
+          <EntitySet Name="sertifikalar" EntityType="basvuruModel.sertifikalar" />
+          <AssociationSet Name="sertifikalar_ibfk_1" Association="basvuruModel.sertifikalar_ibfk_1">
+            <End Role="basvurular" EntitySet="basvurular" />
+            <End Role="sertifikalar" EntitySet="sertifikalar" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="referanslar">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RefSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RefMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RefTel" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="BID" Type="Int32" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.referanslar_ibfk_1" FromRole="referanslar" ToRole="basvurular" />
+        </EntityType>
+        <EntityType Name="askerlik">
+          <Key>
+            <PropertyRef Name="AskerliID" />
+          </Key>
+          <Property Name="AskerliID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AskerlikDurum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.basvurular_ibfk_7" FromRole="askerlik" ToRole="basvurular" />
+        </EntityType>
+        <EntityType Name="diller">
+          <Key>
+            <PropertyRef Name="DilID" />
+          </Key>
+          <Property Name="DilID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DilAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="byabancidil" Relationship="basvuruModel.byabancidil_ibfk_1" FromRole="diller" ToRole="byabancidil" />
+        </EntityType>
+        <EntityType Name="byabancidil">
+          <Key>
+            <PropertyRef Name="BYDilID" />
+          </Key>
+          <Property Name="BYDilID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DilID" Type="Int32" />
+          <Property Name="BID" Type="Int32" />
+          <Property Name="BasSeviyeID" Type="Int32" />
+          <NavigationProperty Name="basari_seviyeleri" Relationship="basvuruModel.byabancidil_ibfk_4" FromRole="byabancidil" ToRole="basari_seviyeleri" />
+          <NavigationProperty Name="diller" Relationship="basvuruModel.byabancidil_ibfk_1" FromRole="byabancidil" ToRole="diller" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.byabancidil_ibfk_3" FromRole="byabancidil" ToRole="basvurular" />
+        </EntityType>
+        <Association Name="byabancidil_ibfk_4">
+          <End Type="basvuruModel.basari_seviyeleri" Role="basari_seviyeleri" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.byabancidil" Role="byabancidil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basari_seviyeleri">
+              <PropertyRef Name="BasSeviyeID" />
+            </Principal>
+            <Dependent Role="byabancidil">
+              <PropertyRef Name="BasSeviyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="byabancidil_ibfk_1">
+          <End Type="basvuruModel.diller" Role="diller" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.byabancidil" Role="byabancidil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="diller">
+              <PropertyRef Name="DilID" />
+            </Principal>
+            <Dependent Role="byabancidil">
+              <PropertyRef Name="DilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="deneyim">
+          <Key>
+            <PropertyRef Name="DeneyimID" />
+          </Key>
+          <Property Name="DeneyimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BaslamaTar" Type="DateTime" />
+          <Property Name="BitisTar" Type="DateTime" />
+          <Property Name="FirmaAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IlID" Type="Int32" />
+          <Property Name="IsTanimi" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="BID" Type="Int32" />
+          <Property Name="MeslekID" Type="Int32" />
+          <NavigationProperty Name="iller" Relationship="basvuruModel.deneyim_ibfk_1" FromRole="deneyim" ToRole="iller" />
+          <NavigationProperty Name="meslekler" Relationship="basvuruModel.deneyim_ibfk_4" FromRole="deneyim" ToRole="meslekler" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.deneyim_ibfk_3" FromRole="deneyim" ToRole="basvurular" />
+        </EntityType>
+        <EntityType Name="meslekler">
+          <Key>
+            <PropertyRef Name="MeslekID" />
+          </Key>
+          <Property Name="MeslekID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kod" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isim" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="deneyim" Relationship="basvuruModel.deneyim_ibfk_4" FromRole="meslekler" ToRole="deneyim" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.basvurular_ibfk_8" FromRole="meslekler" ToRole="basvurular" />
+        </EntityType>
+        <Association Name="deneyim_ibfk_1">
+          <End Type="basvuruModel.iller" Role="iller" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.deneyim" Role="deneyim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iller">
+              <PropertyRef Name="IlID" />
+            </Principal>
+            <Dependent Role="deneyim">
+              <PropertyRef Name="IlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="deneyim_ibfk_4">
+          <End Type="basvuruModel.meslekler" Role="meslekler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.deneyim" Role="deneyim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="meslekler">
+              <PropertyRef Name="MeslekID" />
+            </Principal>
+            <Dependent Role="deneyim">
+              <PropertyRef Name="MeslekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="KID" />
+          </Key>
+          <Property Name="KID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="YetkiID" Type="Int32" />
+          <Property Name="KSoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KEposta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KSifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KDogTar" Type="DateTime" />
+          <Property Name="KTelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KIban" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KCinsiyet" Type="Boolean" />
+          <Property Name="KResim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IlceID" Type="Int32" />
+          <NavigationProperty Name="ilceler" Relationship="basvuruModel.kullanicilar_ibfk_2" FromRole="kullanicilar" ToRole="ilceler" />
+          <NavigationProperty Name="yetkiler" Relationship="basvuruModel.kullanicilar_ibfk_1" FromRole="kullanicilar" ToRole="yetkiler" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.basvurular_ibfk_9" FromRole="kullanicilar" ToRole="basvurular" />
+        </EntityType>
+        <Association Name="kullanicilar_ibfk_2">
+          <End Type="basvuruModel.ilceler" Role="ilceler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.kullanicilar" Role="kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ilceler">
+              <PropertyRef Name="IlceID" />
+            </Principal>
+            <Dependent Role="kullanicilar">
+              <PropertyRef Name="IlceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="kullanicilar_ibfk_1">
+          <End Type="basvuruModel.yetkiler" Role="yetkiler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.kullanicilar" Role="kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yetkiler">
+              <PropertyRef Name="YetkiID" />
+            </Principal>
+            <Dependent Role="kullanicilar">
+              <PropertyRef Name="YetkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="basvurular">
+          <Key>
+            <PropertyRef Name="BID" />
+          </Key>
+          <Property Name="BID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KID" Type="Int32" />
+          <Property Name="Ucret_Beklenti" Type="Int32" />
+          <Property Name="TCalSure" Type="Int32" />
+          <Property Name="bolum_id" Type="Int32" />
+          <Property Name="BDurumID" Type="Int32" />
+          <Property Name="Hobiler" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BOnYazi" Type="String" MaxLength="10240" FixedLength="false" Unicode="false" />
+          <Property Name="AskerliID" Type="Int32" />
+          <Property Name="MeslekID" Type="Int32" />
+          <NavigationProperty Name="askerlik" Relationship="basvuruModel.basvurular_ibfk_7" FromRole="basvurular" ToRole="askerlik" />
+          <NavigationProperty Name="basvuru_durumu" Relationship="basvuruModel.basvurular_ibfk_4" FromRole="basvurular" ToRole="basvuru_durumu" />
+          <NavigationProperty Name="bolumler" Relationship="basvuruModel.basvurular_ibfk_3" FromRole="basvurular" ToRole="bolumler" />
+          <NavigationProperty Name="meslekler" Relationship="basvuruModel.basvurular_ibfk_8" FromRole="basvurular" ToRole="meslekler" />
+          <NavigationProperty Name="kullanicilar" Relationship="basvuruModel.basvurular_ibfk_9" FromRole="basvurular" ToRole="kullanicilar" />
+          <NavigationProperty Name="byabancidil" Relationship="basvuruModel.byabancidil_ibfk_3" FromRole="basvurular" ToRole="byabancidil" />
+          <NavigationProperty Name="deneyim" Relationship="basvuruModel.deneyim_ibfk_3" FromRole="basvurular" ToRole="deneyim" />
+          <NavigationProperty Name="projeler" Relationship="basvuruModel.projeler_ibfk_1" FromRole="basvurular" ToRole="projeler" />
+          <NavigationProperty Name="referanslar" Relationship="basvuruModel.referanslar_ibfk_1" FromRole="basvurular" ToRole="referanslar" />
+          <NavigationProperty Name="sem_kurs" Relationship="basvuruModel.sem_kurs_ibfk_1" FromRole="basvurular" ToRole="sem_kurs" />
+          <NavigationProperty Name="sertifikalar" Relationship="basvuruModel.sertifikalar_ibfk_1" FromRole="basvurular" ToRole="sertifikalar" />
+        </EntityType>
+        <Association Name="basvurular_ibfk_7">
+          <End Type="basvuruModel.askerlik" Role="askerlik" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="askerlik">
+              <PropertyRef Name="AskerliID" />
+            </Principal>
+            <Dependent Role="basvurular">
+              <PropertyRef Name="AskerliID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="basvurular_ibfk_4">
+          <End Type="basvuruModel.basvuru_durumu" Role="basvuru_durumu" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvuru_durumu">
+              <PropertyRef Name="BDurumID" />
+            </Principal>
+            <Dependent Role="basvurular">
+              <PropertyRef Name="BDurumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="basvurular_ibfk_3">
+          <End Type="basvuruModel.bolumler" Role="bolumler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bolumler">
+              <PropertyRef Name="bolum_id" />
+            </Principal>
+            <Dependent Role="basvurular">
+              <PropertyRef Name="bolum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="basvurular_ibfk_8">
+          <End Type="basvuruModel.meslekler" Role="meslekler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="meslekler">
+              <PropertyRef Name="MeslekID" />
+            </Principal>
+            <Dependent Role="basvurular">
+              <PropertyRef Name="MeslekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="basvurular_ibfk_9">
+          <End Type="basvuruModel.kullanicilar" Role="kullanicilar" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanicilar">
+              <PropertyRef Name="KID" />
+            </Principal>
+            <Dependent Role="basvurular">
+              <PropertyRef Name="KID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="byabancidil_ibfk_3">
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.byabancidil" Role="byabancidil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="byabancidil">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="deneyim_ibfk_3">
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.deneyim" Role="deneyim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="deneyim">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="projeler_ibfk_1">
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="0..1" />
+          <End Type="basvuruModel.projeler" Role="projeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="projeler">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="referanslar_ibfk_1">
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.referanslar" Role="referanslar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="referanslar">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sem_kurs_ibfk_1">
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="basvuruModel.sem_kurs" Role="sem_kurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="sem_kurs">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sertifikalar">
+          <Key>
+            <PropertyRef Name="SertifikaID" />
+          </Key>
+          <Property Name="SertifikaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SertifikaAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Alindigi_Kurum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BID" Type="Int32" />
+          <Property Name="AlimTar" Type="DateTime" />
+          <Property Name="SertifikaPDF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="basvurular" Relationship="basvuruModel.sertifikalar_ibfk_1" FromRole="sertifikalar" ToRole="basvurular" />
+        </EntityType>
+        <Association Name="sertifikalar_ibfk_1">
+          <End Type="basvuruModel.basvurular" Role="basvurular" Multiplicity="0..1" />
+          <End Type="basvuruModel.sertifikalar" Role="sertifikalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basvurular">
+              <PropertyRef Name="BID" />
+            </Principal>
+            <Dependent Role="sertifikalar">
+              <PropertyRef Name="BID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="basvuruModelStoreContainer" CdmEntityContainer="basvuruEntities">
+          <EntitySetMapping Name="basari_seviyeleri">
+            <EntityTypeMapping TypeName="basvuruModel.basari_seviyeleri">
+              <MappingFragment StoreEntitySet="basari_seviyeleri">
+                <ScalarProperty Name="BasSeviyeID" ColumnName="BasSeviyeID" />
+                <ScalarProperty Name="BasSeviyesi" ColumnName="BasSeviyesi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="basvuru_durumu">
+            <EntityTypeMapping TypeName="basvuruModel.basvuru_durumu">
+              <MappingFragment StoreEntitySet="basvuru_durumu">
+                <ScalarProperty Name="BDurumID" ColumnName="BDurumID" />
+                <ScalarProperty Name="BDurum" ColumnName="BDurum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bolumler">
+            <EntityTypeMapping TypeName="basvuruModel.bolumler">
+              <MappingFragment StoreEntitySet="bolumler">
+                <ScalarProperty Name="bolum_id" ColumnName="bolum_id" />
+                <ScalarProperty Name="bolum_ad" ColumnName="bolum_ad" />
+                <ScalarProperty Name="fakulte_id" ColumnName="fakulte_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fakulteler">
+            <EntityTypeMapping TypeName="basvuruModel.fakulteler">
+              <MappingFragment StoreEntitySet="fakulteler">
+                <ScalarProperty Name="fakulte_id" ColumnName="fakulte_id" />
+                <ScalarProperty Name="fakulte_ad" ColumnName="fakulte_ad" />
+                <ScalarProperty Name="uni_id" ColumnName="uni_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ilceler">
+            <EntityTypeMapping TypeName="basvuruModel.ilceler">
+              <MappingFragment StoreEntitySet="ilceler">
+                <ScalarProperty Name="IlceID" ColumnName="IlceID" />
+                <ScalarProperty Name="Ilce" ColumnName="Ilce" />
+                <ScalarProperty Name="IlID" ColumnName="IlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="iller">
+            <EntityTypeMapping TypeName="basvuruModel.iller">
+              <MappingFragment StoreEntitySet="iller">
+                <ScalarProperty Name="IlID" ColumnName="IlID" />
+                <ScalarProperty Name="Il" ColumnName="Il" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projeler">
+            <EntityTypeMapping TypeName="basvuruModel.projeler">
+              <MappingFragment StoreEntitySet="projeler">
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ProjeAdi" ColumnName="ProjeAdi" />
+                <ScalarProperty Name="Proje_Aciklama" ColumnName="Proje_Aciklama" />
+                <ScalarProperty Name="BID" ColumnName="BID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sem_kurs">
+            <EntityTypeMapping TypeName="basvuruModel.sem_kurs">
+              <MappingFragment StoreEntitySet="sem_kurs">
+                <ScalarProperty Name="SKID" ColumnName="SKID" />
+                <ScalarProperty Name="EgitimAdi" ColumnName="EgitimAdi" />
+                <ScalarProperty Name="Egitim_Kurumu" ColumnName="Egitim_Kurumu" />
+                <ScalarProperty Name="Egitmen_Adi" ColumnName="Egitmen_Adi" />
+                <ScalarProperty Name="Egitmen_Soyadi" ColumnName="Egitmen_Soyadi" />
+                <ScalarProperty Name="Bas_Tar" ColumnName="Bas_Tar" />
+                <ScalarProperty Name="Bitis_Tar" ColumnName="Bitis_Tar" />
+                <ScalarProperty Name="BID" ColumnName="BID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="universiteler">
+            <EntityTypeMapping TypeName="basvuruModel.universiteler">
+              <MappingFragment StoreEntitySet="universiteler">
+                <ScalarProperty Name="uni_id" ColumnName="uni_id" />
+                <ScalarProperty Name="uni_name" ColumnName="uni_name" />
+                <ScalarProperty Name="IlID" ColumnName="IlID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yetkiler">
+            <EntityTypeMapping TypeName="basvuruModel.yetkiler">
+              <MappingFragment StoreEntitySet="yetkiler">
+                <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="referanslar">
+            <EntityTypeMapping TypeName="basvuruModel.referanslar">
+              <MappingFragment StoreEntitySet="referanslar">
+                <ScalarProperty Name="BID" ColumnName="BID" />
+                <ScalarProperty Name="RefTel" ColumnName="RefTel" />
+                <ScalarProperty Name="RefMail" ColumnName="RefMail" />
+                <ScalarProperty Name="RefSoyad" ColumnName="RefSoyad" />
+                <ScalarProperty Name="RefAdi" ColumnName="RefAdi" />
+                <ScalarProperty Name="RefID" ColumnName="RefID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="askerlik">
+            <EntityTypeMapping TypeName="basvuruModel.askerlik">
+              <MappingFragment StoreEntitySet="askerlik">
+                <ScalarProperty Name="AskerlikDurum" ColumnName="AskerlikDurum" />
+                <ScalarProperty Name="AskerliID" ColumnName="AskerliID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="diller">
+            <EntityTypeMapping TypeName="basvuruModel.diller">
+              <MappingFragment StoreEntitySet="diller">
+                <ScalarProperty Name="DilAdi" ColumnName="DilAdi" />
+                <ScalarProperty Name="DilID" ColumnName="DilID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="byabancidil">
+            <EntityTypeMapping TypeName="basvuruModel.byabancidil">
+              <MappingFragment StoreEntitySet="byabancidil">
+                <ScalarProperty Name="BasSeviyeID" ColumnName="BasSeviyeID" />
+                <ScalarProperty Name="BID" ColumnName="BID" />
+                <ScalarProperty Name="DilID" ColumnName="DilID" />
+                <ScalarProperty Name="BYDilID" ColumnName="BYDilID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="deneyim">
+            <EntityTypeMapping TypeName="basvuruModel.deneyim">
+              <MappingFragment StoreEntitySet="deneyim">
+                <ScalarProperty Name="MeslekID" ColumnName="MeslekID" />
+                <ScalarProperty Name="BID" ColumnName="BID" />
+                <ScalarProperty Name="IsTanimi" ColumnName="IsTanimi" />
+                <ScalarProperty Name="IlID" ColumnName="IlID" />
+                <ScalarProperty Name="FirmaAdi" ColumnName="FirmaAdi" />
+                <ScalarProperty Name="BitisTar" ColumnName="BitisTar" />
+                <ScalarProperty Name="BaslamaTar" ColumnName="BaslamaTar" />
+                <ScalarProperty Name="DeneyimID" ColumnName="DeneyimID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="meslekler">
+            <EntityTypeMapping TypeName="basvuruModel.meslekler">
+              <MappingFragment StoreEntitySet="meslekler">
+                <ScalarProperty Name="isim" ColumnName="isim" />
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="MeslekID" ColumnName="MeslekID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kullanicilar">
+            <EntityTypeMapping TypeName="basvuruModel.kullanicilar">
+              <MappingFragment StoreEntitySet="kullanicilar">
+                <ScalarProperty Name="IlceID" ColumnName="IlceID" />
+                <ScalarProperty Name="KResim" ColumnName="KResim" />
+                <ScalarProperty Name="KCinsiyet" ColumnName="KCinsiyet" />
+                <ScalarProperty Name="KIban" ColumnName="KIban" />
+                <ScalarProperty Name="KTelNo" ColumnName="KTelNo" />
+                <ScalarProperty Name="KDogTar" ColumnName="KDogTar" />
+                <ScalarProperty Name="KSifre" ColumnName="KSifre" />
+                <ScalarProperty Name="KEposta" ColumnName="KEposta" />
+                <ScalarProperty Name="KSoyad" ColumnName="KSoyad" />
+                <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
+                <ScalarProperty Name="KAdi" ColumnName="KAdi" />
+                <ScalarProperty Name="KID" ColumnName="KID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="basvurular">
+            <EntityTypeMapping TypeName="basvuruModel.basvurular">
+              <MappingFragment StoreEntitySet="basvurular">
+                <ScalarProperty Name="MeslekID" ColumnName="MeslekID" />
+                <ScalarProperty Name="AskerliID" ColumnName="AskerliID" />
+                <ScalarProperty Name="BOnYazi" ColumnName="BOnYazi" />
+                <ScalarProperty Name="Hobiler" ColumnName="Hobiler" />
+                <ScalarProperty Name="BDurumID" ColumnName="BDurumID" />
+                <ScalarProperty Name="bolum_id" ColumnName="bolum_id" />
+                <ScalarProperty Name="TCalSure" ColumnName="TCalSure" />
+                <ScalarProperty Name="Ucret_Beklenti" ColumnName="Ucret_Beklenti" />
+                <ScalarProperty Name="KID" ColumnName="KID" />
+                <ScalarProperty Name="BID" ColumnName="BID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sertifikalar">
+            <EntityTypeMapping TypeName="basvuruModel.sertifikalar">
+              <MappingFragment StoreEntitySet="sertifikalar">
+                <ScalarProperty Name="SertifikaPDF" ColumnName="SertifikaPDF" />
+                <ScalarProperty Name="AlimTar" ColumnName="AlimTar" />
+                <ScalarProperty Name="BID" ColumnName="BID" />
+                <ScalarProperty Name="Alindigi_Kurum" ColumnName="Alindigi_Kurum" />
+                <ScalarProperty Name="SertifikaAdi" ColumnName="SertifikaAdi" />
+                <ScalarProperty Name="SertifikaID" ColumnName="SertifikaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
