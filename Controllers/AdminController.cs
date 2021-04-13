@@ -12,7 +12,6 @@ namespace Basvuru_App.Controllers
     {
         basvuruEntities db = new basvuruEntities();
         // GET: Admin
-        //goksel
         public ActionResult basvuruListele()
         {
             var Bdeger = db.basvurular.ToList();
